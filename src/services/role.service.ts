@@ -26,3 +26,9 @@ export function deleteRole (query: FilterQuery<RoleDocument>)
 {
     return Role.deleteOne(query);
 }
+
+//find a role
+export function findRole (query: FilterQuery<RoleDocument>, options: QueryOptions = { lean: true })
+{
+    return Role.findOne(query, {}, options)
+}

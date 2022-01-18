@@ -19,12 +19,6 @@ const RoleSchema = new mongoose.Schema (
             type: Number,
             required: true
         },
-        account: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "user"
-            }
-        ]
     },
     {
         timestamps: true

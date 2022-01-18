@@ -9,7 +9,7 @@ const payload = {
 
 const params = {
     params: object({
-        _id: string().required("id is required"),
+        id: string().required("id is required"),
     }),
 };
 

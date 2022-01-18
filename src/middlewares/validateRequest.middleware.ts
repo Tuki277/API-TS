@@ -13,7 +13,7 @@ const validateRequest = (Schema: AnySchema) => async (req: Request, res: Respons
         return next();
     } catch (error: any) {
         log.error(error);
-        return res.status(400).json({ "Error": true, error });
+        return res.status(400).json({ "Error": true, "Message": error.message });
     }
 }
 
