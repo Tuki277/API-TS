@@ -1,12 +1,9 @@
-import mongoose, { Schema } from "mongoose";
-import { UserDocument } from "./user.model";
-
+import mongoose from "mongoose";
 export interface RoleDocument extends mongoose.Schema {
     name: string;
     roleNumber: number;
     createAt: Date;
     updateAt: Date;
-    account: UserDocument["_id"];
 }
 
 const RoleSchema = new mongoose.Schema (
