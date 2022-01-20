@@ -1,6 +1,8 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from 'bcrypt';
 import config from 'config';
+import { PositionDocument } from "./position.model";
+import { RoleDocument } from "./role.model";
 
 export interface UserDocument extends mongoose.Document {
     email: string;
@@ -8,7 +10,9 @@ export interface UserDocument extends mongoose.Document {
     password: string;
     createAt: Date;
     updateAt: Date;
-    comparePassword(candidatePassword: string): Promise<boolean>
+    role: RoleDocument["id"];
+    position: PositionDocument["id"];
+    comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
 const UserSchema = new mongoose.Schema(
@@ -29,6 +33,10 @@ const UserSchema = new mongoose.Schema(
         role: {
             type: Schema.Types.ObjectId,
             ref: "Role"
+        },
+        position: {
+            type: Schema.Types.ObjectId,
+            ref: "Position"
         }
     },
     {

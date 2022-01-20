@@ -11,6 +11,8 @@ export async function getAllRoleController (req: Request, res: Response) {
 export async function createRoleController (req: Request, res: Response) {
     const body: any = await validateRole(req.body)
 
+    console.log(body)
+
     if (body != null) {
         return res.status(401).json({ "Error": false, "Message": "Role number already exists"})
     }
@@ -25,7 +27,7 @@ export async function deleteRoleController (req: Request, res: Response) {
 
     const findRoleController = await findRole({ _id: id });
     if (findRoleController == null) {
-        res.status(404).json({ "Erorr": true, "Message": "Not Found Role"})
+        res.status(404).json({ "Error": true, "Message": "Not Found Role"})
     }
     else {
         await deleteRole(findRoleController);

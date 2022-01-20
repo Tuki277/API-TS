@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-export interface PositionDocument extends mongoose.Schema {
+export interface PositionDocument extends mongoose.Document {
     name: string;
     createAt: Date;
     updateAt: Date;

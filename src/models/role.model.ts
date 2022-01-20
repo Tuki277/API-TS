@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-export interface RoleDocument extends mongoose.Schema {
+export interface RoleDocument extends mongoose.Document {
     name: string;
     roleNumber: number;
     createAt: Date;

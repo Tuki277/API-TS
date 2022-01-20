@@ -5,6 +5,8 @@ export async function validateRole (input: DocumentDefinition<RoleDocument>) {
     const roleNumber = input.roleNumber
     const role = await Role.findOne({ roleNumber })
 
+    console.log({ role })
+
     if (role !== null){
         return false;
     }

@@ -4,6 +4,8 @@ import { createRoleSchema, deleteRoleSchema, updateRoleSchema } from './schema/r
 import { createRoleController, deleteRoleController, getAllRoleController, updateRoleController } from './controllers/role.controller'
 import { createPositionSchema, deletePositionSchema, updatePositionSchema } from "./schema/position.schema";
 import { createPositionController, deletePositionController, getAllPositionController, updatePositionController } from "./controllers/position.controller";
+import { createUser, deleteUser, updateUser } from "./schema/user.schema";
+import { createUserController, updateUserController, deleteUserController, getAllUserController } from "./controllers/user.controller";
 
 
 export default function (app: Express) {
@@ -49,4 +51,24 @@ export default function (app: Express) {
     //Update a Position
     // api/Position/:id
     app.put("/api/position/:id", validateRequest(updatePositionSchema), updatePositionController)
+
+    //POST
+    //create User
+    // api/user
+    app.post("/api/user", validateRequest(createUser), createUserController);
+
+    //DELETE
+    //Delete user
+    // api/user
+    app.delete("/api/user/:id", validateRequest(deleteUser), deleteUserController);
+
+    //PUT
+    //update a user
+    // api/user
+    app.put("/api/user/:id", validateRequest(updateUser), updateUserController);
+
+    //GET
+    //get a user
+    // api/user
+    app.get("/api/user", getAllUserController)
 }
