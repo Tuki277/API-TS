@@ -11,8 +11,6 @@ export async function getAllRoleController (req: Request, res: Response) {
 export async function createRoleController (req: Request, res: Response) {
     const body: any = await validateRole(req.body)
 
-    console.log(body)
-
     if (body != null) {
         return res.status(401).json({ "Error": false, "Message": "Role number already exists"})
     }

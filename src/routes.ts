@@ -6,6 +6,8 @@ import { createPositionSchema, deletePositionSchema, updatePositionSchema } from
 import { createPositionController, deletePositionController, getAllPositionController, updatePositionController } from "./controllers/position.controller";
 import { createUser, deleteUser, updateUser } from "./schema/user.schema";
 import { createUserController, updateUserController, deleteUserController, getAllUserController } from "./controllers/user.controller";
+import { createUserSessionSchema } from "./schema/session.schema";
+import { Login } from "./controllers/login.controller";
 
 
 export default function (app: Express) {
@@ -71,4 +73,9 @@ export default function (app: Express) {
     //get a user
     // api/user
     app.get("/api/user", getAllUserController)
+
+    //POST
+    //login a user
+    // api/login
+    app.post("/api/login", validateRequest(createUserSessionSchema), Login)
 }
