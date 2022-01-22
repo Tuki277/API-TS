@@ -8,3 +8,9 @@ export const createUserSessionSchema = object ({
         email: string().email("Must be a valid email").required("Email is required")
     })
 })
+
+export const logoutUser = object ({
+    body: object ({
+        session: string().required("Session is required")
+    })
+})

@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { createAccessToken, createSession } from "../services/login.service"
+import { createAccessToken, createSession, updateSessionLogout } from "../services/login.service"
 import { sign } from "../utils/jwt.utils"
 import { validatePassword } from "../utils/validatePassword.utils"
 import config from "config"
@@ -21,5 +21,11 @@ export const Login = async ( req: Request, res: Response ) => {
         expiresIn: config.get("refreshTokenTtl"),
     })
 
-    return res.status(200).json({ accessToken, refreshToken, "Error": false, "Message": "Login success"})
+    return res.status(200).json({ accessToken, refreshToken, sessionId: session._id, "Error": false, "Message": "Login success"})
+}
+
+export const Logout = async (req: Request, res: Response) => {
+    const session = req.body.session;
+    await updateSessionLogout({ _id: session }, { valid: false })
+    return res.status(200).json({ "Error": false, "Message": "Logout succes" })
 }

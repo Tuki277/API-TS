@@ -1,6 +1,6 @@
 import config from "config"
 import { sign } from "../utils/jwt.utils";
-import { LeanDocument } from "mongoose";
+import { FilterQuery, LeanDocument, UpdateQuery } from "mongoose";
 import Session, { SessionDocument } from "../models/session.model"
 import { UserDocument } from "../models/user.model";
 
@@ -24,4 +24,8 @@ export const createAccessToken = (
     );
 
     return accessToken;
+}
+
+export const updateSessionLogout = async (query: FilterQuery<SessionDocument>, update: UpdateQuery<SessionDocument>) => {
+    return Session.updateOne(query, update)
 }
