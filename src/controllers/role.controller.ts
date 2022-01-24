@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { createRole, findAndUpdateRole, deleteRole, getAllRole, findRole} from "../services/role.service";
-import { validateRole } from "../utils/validateRole.ultis";
+import { validateRole } from "../utils/validateDuplicated";
 
 export async function getAllRoleController (req: Request, res: Response) {
     const Role = await getAllRole({ valid: true })
@@ -11,7 +11,7 @@ export async function getAllRoleController (req: Request, res: Response) {
 export async function createRoleController (req: Request, res: Response) {
     const body: any = await validateRole(req.body)
 
-    if (body != null) {
+    if (body === false) {
         return res.status(401).json({ "Error": false, "Message": "Role number already exists"})
     }
     else {

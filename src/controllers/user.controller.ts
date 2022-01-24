@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { createUser, deleteUser, findAndUpdateUser, findUser, getAllUser } from "../services/user.service"
-import { validateUsername } from "../utils/validateUsername.utils"
+import { validateUsername } from "../utils/validateDuplicated"
 
 export async function createUserController (req: Request, res: Response) {
     const body: any = await validateUsername(req.body)

@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { createPosition, findAndUpdatePosition, getAllPosition, findPosition, deletePosition } from "../services/position.service" 
-import { validatePositionDuplicated } from "../utils/validatePosition.ultis"
+import { validatePositionDuplicated } from "../utils/validateDuplicated"
 
 export async function getAllPositionController (req: Request, res: Response) {
     const Position = await getAllPosition({ valid: true })
@@ -10,7 +10,7 @@ export async function getAllPositionController (req: Request, res: Response) {
 export async function createPositionController (req: Request, res: Response) {
     const body: any = await validatePositionDuplicated(req.body)
 
-    if (body != null) {
+    if (body === false) {
         return res.status(401).json({ "Error": false, "Message": "Name position already exists"})
     } else {
         const post = await createPosition({ ... req.body })
