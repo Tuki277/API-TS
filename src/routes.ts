@@ -8,8 +8,8 @@ import { createUser, deleteUser, updateUser } from "./schema/user.schema";
 import { createUserController, updateUserController, deleteUserController, getAllUserController } from "./controllers/user.controller";
 import { createUserSessionSchema, logoutUser } from "./schema/session.schema";
 import { Login, Logout } from "./controllers/login.controller";
-import { createTodoController, deleteTodoController, getAllTodoController, getTodoByIdController, updateTodoController } from "./controllers/todo.controller";
-import { createTodoSchema, deleteTodoSchema, getTodoSchema, updateTodoSchema } from "./schema/todo.schema";
+import { createTodoController, deleteTodoController, finishTodoController, getAllTodoController, getTodoByIdController, updateTodoController } from "./controllers/todo.controller";
+import { createTodoSchema, deleteTodoSchema, finishTodoSchema, getTodoSchema, updateTodoSchema } from "./schema/todo.schema";
 
 
 export default function (app: Express) {
@@ -110,4 +110,9 @@ export default function (app: Express) {
     //update todo
     // api/todo/:id
     app.put("/api/todo/:id", validateRequest(updateTodoSchema), updateTodoController)
+
+    //POST
+    //finish task
+    // api/todo/finish/:id
+    app.patch("/api/todo/finish/:id", validateRequest(finishTodoSchema), finishTodoController)
 }

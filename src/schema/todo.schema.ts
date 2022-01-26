@@ -3,6 +3,7 @@ import { boolean, object, string } from "yup";
 const payload = {
     body: object ({
         name: string().required('Name is required'),
+        description: string().required("Description is required")
     })
 }
 
@@ -27,4 +28,8 @@ export const getTodoSchema = object ({
 export const updateTodoSchema = object ({
     ...params,
     ...payload
+})
+
+export const finishTodoSchema = object ({
+    ...params
 })

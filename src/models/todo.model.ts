@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 export interface TodoDocument extends mongoose.Document {
     name: string,
     status: boolean,
+    description: string,
     createAt: Date,
     updateAt: Date
 }
@@ -10,6 +11,10 @@ export interface TodoDocument extends mongoose.Document {
 const TodoSchema = new mongoose.Schema (
     {
         name: {
+            type: String,
+            required: true
+        },
+        description: {
             type: String,
             required: true
         },

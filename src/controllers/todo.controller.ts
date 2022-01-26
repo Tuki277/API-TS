@@ -36,6 +36,20 @@ export const updateTodoController = async (req: Request, res: Response) => {
     }
 }
 
+export const finishTodoController = async (req: Request, res: Response) => {
+    const id = req.params.id
+    const findTodoToUpdate = await findTodo({ _id: id });
+    if (findTodoToUpdate == null) {
+        return res.status(404).json({ "Error": true, "Message": "Not Found"})
+    } else {
+        const update = {
+            "status": true
+        }
+        const updateTodo = await findAndUpdateTodo({ _id: id}, update, { new: true })
+        return res.status(200).json({ "Error": false, "data": updateTodo })
+    }
+}
+
 export const getTodoByIdController = async (req: Request, res: Response) => {
     const id = req.params.id
     const todoDetail = await findTodo({ _id: id })
