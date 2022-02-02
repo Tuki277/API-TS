@@ -52,3 +52,30 @@ export function findUser (query: FilterQuery<UserDocument>, options: QueryOption
 {
     return User.findOne(query, {}, options)
 }
+
+export const findUserBySessionId = (id: string) => {
+    return User.aggregate([
+        {
+            $match: {_id: id }
+        },
+        {
+            $lookup: {
+                from: "positions",
+                localField: "position",
+                foreignField: "_id",
+                as: "position"
+            },
+        },
+        {
+            $lookup: {
+                from: "roles",
+                localField: "role",
+                foreignField: "_id",
+                as: "role"
+            },
+        },
+        {
+            $project: { 'position._id': 0, 'role._id': 0}
+        }
+    ])
+}

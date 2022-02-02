@@ -5,8 +5,8 @@ import { createRoleController, deleteRoleController, getAllRoleController, updat
 import { createPositionSchema, deletePositionSchema, updatePositionSchema } from "./schema/position.schema";
 import { createPositionController, deletePositionController, getAllPositionController, updatePositionController } from "./controllers/position.controller";
 import { createUser, deleteUser, updateUser } from "./schema/user.schema";
-import { createUserController, updateUserController, deleteUserController, getAllUserController } from "./controllers/user.controller";
-import { createUserSessionSchema, logoutUser } from "./schema/session.schema";
+import { createUserController, updateUserController, deleteUserController, getAllUserController, getUserProfileBySessionId, getSessionByUser } from "./controllers/user.controller";
+import { createUserSessionSchema, getAllSessions, getUserprofileBySessionIdSchema, logoutUser } from "./schema/session.schema";
 import { Login, Logout } from "./controllers/login.controller";
 import { createTodoController, deleteTodoController, finishTodoController, getAllTodoController, getTodoByIdController, updateTodoController } from "./controllers/todo.controller";
 import { createTodoSchema, deleteTodoSchema, finishTodoSchema, getTodoSchema, updateTodoSchema } from "./schema/todo.schema";
@@ -115,4 +115,14 @@ export default function (app: Express) {
     //finish task
     // api/todo/finish/:id
     app.patch("/api/todo/finish/:id", validateRequest(finishTodoSchema), finishTodoController)
+
+    //GET
+    //Find user by sessionId
+    //api/userprofileBySession/:sessionId
+    app.get('/api/userprofilebysession/:sessionId', validateRequest(getUserprofileBySessionIdSchema), getUserProfileBySessionId)
+
+    //GET
+    //Find all session user
+    //api/user/session/:sessionId
+    app.get('/api/user/session/:sessionId', validateRequest(getAllSessions), getSessionByUser)
 }
