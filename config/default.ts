@@ -1,6 +1,6 @@
 export default {
-    host: "localhost",
-    port: 3000,
+    host: "0.0.0.0",
+    port: 4000,
     url: "mongodb+srv://Tuki277:HoangHuy01@cluster0.j4aw8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     saltWorkFactor: 10,
     accessTokenTtl: "15m",
