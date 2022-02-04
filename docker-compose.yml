@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '4000:4000'
+    container_name: backend-node-ts
+
+  frontend:
+    build: 
+      context: ./../frontend-ts
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    container_name: frontend-react-ts
