@@ -10,6 +10,8 @@ import { createUserSessionSchema, getAllSessions, getUserprofileBySessionIdSchem
 import { Login, Logout } from "./controllers/login.controller";
 import { createTodoController, deleteTodoController, finishTodoController, getAllTodoController, getTodoByIdController, updateTodoController } from "./controllers/todo.controller";
 import { createTodoSchema, deleteTodoSchema, finishTodoSchema, getTodoSchema, updateTodoSchema } from "./schema/todo.schema";
+import { getAllImageController, uploadImagesController } from "./controllers/imagesfile.controller";
+import { createImageSchema } from "./schema/image.schema";
 
 
 export default function (app: Express) {
@@ -125,4 +127,14 @@ export default function (app: Express) {
     //Find all session user
     //api/user/session/:sessionId
     app.get('/api/user/session/:sessionId', validateRequest(getAllSessions), getSessionByUser)
+
+    //POST
+    // Upload Image
+    //api/images/upload
+    app.post('/api/images/upload', uploadImagesController)
+
+    //GET
+    // GWT ALL Image
+    //api/images
+    app.get('/api/images', getAllImageController)
 }
